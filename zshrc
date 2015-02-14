@@ -11,10 +11,10 @@ ZSH_THEME="rkj-repos"
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=7
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -78,3 +78,17 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+#common aliases
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get upgrade'
+alias install='sudo apt-get install'
+alias ll='ls -lah'
+alias ssh='ssh -l lukas $1'
+alias df='df -hT | grep -v 'X2GO''
+alias rsync='rsync -P'
+
+##servers
+alias srv01='ssh srv01.mldsc.de'
+alias srv02='ssh srv02.mldsc.de'
+alias saavik='ssh lukas@saavik.floriware.net'
