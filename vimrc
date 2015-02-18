@@ -5,6 +5,7 @@ syntax enable
 set background=dark
 colorscheme solarized
 inoremap <Tab> <C-X><C-F>
+set pastetoggle=<F2>
 set incsearch
 set mouse=a
 set tabstop=4
