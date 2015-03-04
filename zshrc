@@ -83,6 +83,7 @@ fi
 alias update='sudo apt-get update'
 alias upgrade='sudo apt-get upgrade'
 alias install='sudo apt-get install'
+alias dist_upgrade='sudo apt-get dist-upgrade'
 alias ll='ls -lah'
 alias ssh='ssh -l root $1'
 alias df='df -hT | grep -v 'X2GO''
