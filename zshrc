@@ -85,8 +85,9 @@ alias upgrade='sudo apt-get upgrade'
 alias install='sudo apt-get install'
 alias ll='ls -lah'
 alias ssh='ssh -l lukas $1'
-alias df='df -hT | grep -v 'X2GO''
+alias df='df -hT | grep -v 'tmpfs''
 alias rsync='rsync -P'
+alias mvim='vim'
 
 ##servers
 alias srv01='ssh srv01.mldsc.de'
