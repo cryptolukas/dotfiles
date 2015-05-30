@@ -88,6 +88,7 @@ alias ssh='ssh -l lukas $1'
 alias df='df -hT | grep -v 'tmpfs''
 alias rsync='rsync -P'
 alias mvim='vim'
+alias nfsmounts='sudo mount 172.20.16.120:/mnt/data /mnt/data; sudo mount 172.20.16.120:/mnt/data2 /mnt/data2'
 
 ##servers
 alias srv01='ssh srv01.mldsc.de'
