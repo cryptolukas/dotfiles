@@ -45,11 +45,11 @@ export UPDATE_ZSH_DAYS=7
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent)
+plugins=(git ssh-agent systemd)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/home/lukas/bin/"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -58,11 +58,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 #Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='mvim'
-fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -83,16 +79,21 @@ fi
 alias update='sudo apt-get update'
 alias upgrade='sudo apt-get upgrade'
 alias install='sudo apt-get install'
+alias apt-get='sudo apt-get $1'
+alias apt-cache='sudo apt-cache $1'
+alias service='sudo service'
 alias ll='ls -lah'
-alias ssh='ssh -l lukas $1'
+#alias ssh='ssh -l lukas $1'
 alias df='df -hT | grep -v 'tmpfs''
 alias rsync='rsync -P'
 alias mvim='vim'
-alias nfsmounts='sudo mount 172.20.16.120:/mnt/data /mnt/data; sudo mount 172.20.16.120:/mnt/data2 /mnt/data2'
+alias nfsmounts='sudo mount 172.20.16.120:/mnt/tank /data'
+alias psx='ps faux | grep $1'
 
 ##servers
 alias srv01='ssh srv01.mldsc.de'
-alias srv02='ssh srv02.mldsc.de'
 alias saavik='ssh lukas@saavik.floriware.net'
 alias proxmox='ssh root@proxmox.mldsc.de'
+alias pve='ssh root@pve.mldsc.office'
 alias vyos='ssh vyos@vyos.mldsc.de'
+alias an-9='ssh lukas@an-9.de -p88'
