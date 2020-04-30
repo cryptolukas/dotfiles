@@ -71,7 +71,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 export PATH="/home/lukas/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 export PATH="/home/lukas/.local/bin:$PATH"
 export PATH="/snap/bin:$PATH"
 export PATH="$HOME/.tfenv/bin:$PATH"
