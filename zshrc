@@ -1,17 +1,31 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/home/lukas/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="rkj-repos"
+# Path to your oh-my-zsh installation.
+  export ZSH="/home/lukas/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+#ZSH_THEME="rkj-repos"
+ZSH_THEME="agnoster"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 export UPDATE_ZSH_DAYS=7
@@ -35,36 +49,55 @@ export UPDATE_ZSH_DAYS=7
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent systemd)
+plugins=(
+  git
+  ssh-agent
+)
+
+source $ZSH/oh-my-zsh.sh
+export PATH="/home/lukas/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export PATH="/home/lukas/.local/bin:$PATH"
+export PATH="/snap/bin:$PATH"
+export PATH="$HOME/.tfenv/bin:$PATH"
+source ~/.local/bin/aws_zsh_completer.sh
+source <(kubectl completion zsh)
+export EDITOR=vim
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/home/lukas/bin/"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-#Preferred editor for local and remote sessions
-export EDITOR='vim'
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -74,26 +107,13 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-#common aliases
-alias update='sudo apt-get update'
-alias upgrade='sudo apt-get upgrade'
-alias install='sudo apt-get install'
-alias apt-get='sudo apt-get $1'
-alias apt-cache='sudo apt-cache $1'
-alias service='sudo service'
-alias ll='ls -lah'
-#alias ssh='ssh -l lukas $1'
-alias df='df -hT | grep -v 'tmpfs''
-alias rsync='rsync -P'
-alias mvim='vim'
-alias nfsmounts='sudo mount 172.20.16.120:/mnt/tank /data'
-alias psx='ps faux | grep $1'
 
-##servers
-alias srv01='ssh srv01.mldsc.de'
-alias saavik='ssh lukas@saavik.floriware.net'
-alias proxmox='ssh root@proxmox.mldsc.de'
-alias pve='ssh root@pve.mldsc.office'
-alias vyos='ssh vyos@vyos.mldsc.de'
-alias an-9='ssh lukas@an-9.de -p88'
+alias df='df -hT | grep -vE "squashfs|tmpfs|efi"'
+#alias ssh='ssh -lroot'
+alias rsync='rsync -P'
+alias ll='ls -lah'
+alias tf='terraform'
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/lukas/.local/bin/vault vault
+complete -o nospace -C /home/lukas/.tfenv/versions/0.12.21/terraform terraform
