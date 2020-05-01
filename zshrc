@@ -108,7 +108,6 @@ export EDITOR=vim
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias df='df -hT | grep -vE "squashfs|tmpfs|efi"'
-#alias ssh='ssh -lroot'
 alias rsync='rsync -P'
 alias ll='ls -lah'
 alias tf='terraform'
