@@ -97,6 +97,11 @@ export PATH="${PATH}:${SONAR_SCANNER_HOME}/bin"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# backblaze alias
+ID_LIKE=`awk -F= '$1=="ID_LIKE" { print $2 ;}' /etc/os-release`
+if [[ $ID_LIKE == arch ]]; then
+        alias b2='backblaze-b2'
+fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
@@ -110,6 +115,7 @@ export PATH="${PATH}:${SONAR_SCANNER_HOME}/bin"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias df='df -hT | grep -vE "squashfs|tmpfs|efi"'
+#alias ssh='ssh -lroot'
 alias rsync='rsync -P'
 alias ll='ls -lah'
 alias tf='terraform'
