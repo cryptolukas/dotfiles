@@ -77,7 +77,9 @@ export PATH="$HOME/.tfenv/bin:$PATH"
 source ~/.local/bin/aws_zsh_completer.sh
 source <(kubectl completion zsh)
 export EDITOR=vim
+{% if sonar_scanner %}
 export SONAR_SCANNER_HOME="/opt/sonar-scanner"
+{% endif %}
 export PATH="${PATH}:${SONAR_SCANNER_HOME}/bin"
 
 # User configuration
