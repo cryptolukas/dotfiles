@@ -63,58 +63,27 @@ export UPDATE_ZSH_DAYS=7
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
 plugins=(
   git
   ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
-export PATH="/home/lukas/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
 export PATH="/home/lukas/.local/bin:$PATH"
 export PATH="/snap/bin:$PATH"
-export PATH="$HOME/.tfenv/bin:$PATH"
-source ~/.local/bin/aws_zsh_completer.sh
-source <(kubectl completion zsh)
+if [ -d "$HOME/.tfenv/" ]; then
+        export PATH="$HOME/.tfenv/bin:$PATH"
+fi
 export EDITOR=vim
-{% if sonar_scanner %}
-export SONAR_SCANNER_HOME="/opt/sonar-scanner"
-{% endif %}
-export PATH="${PATH}:${SONAR_SCANNER_HOME}/bin"
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
+if [ -d "/usr/bin/kubectl" ]; then
+    source <(kubectl completion zsh)
+fi
 # backblaze alias
 ID_LIKE=`awk -F= '$1=="ID_LIKE" { print $2 ;}' /etc/os-release`
 if [[ $ID_LIKE == arch ]]; then
         alias b2='backblaze-b2'
 fi
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias df='df -hT | grep -vE "squashfs|tmpfs|efi"'
 #alias ssh='ssh -lroot'
@@ -123,5 +92,3 @@ alias ll='ls -lah'
 alias tf='terraform'
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /home/lukas/.local/bin/vault vault
-complete -o nospace -C /home/lukas/.tfenv/versions/0.12.21/terraform terraform
